@@ -11,7 +11,7 @@ import {toAbsoluteUrl} from '../../../../_metronic/helpers'
 
 const loginSchema = Yup.object().shape({
   email: Yup.string()
-    .email('Wrong email format')
+    //.email('Wrong email format')
     .min(3, 'Minimum 3 symbols')
     .max(50, 'Maximum 50 symbols')
     .required('Email is required'),
@@ -22,7 +22,7 @@ const loginSchema = Yup.object().shape({
 })
 
 const initialValues = {
-  email: 'admin@demo.com',
+  email: 'user_1',
   password: 'demo',
 }
 
@@ -81,7 +81,7 @@ export function Login() {
       ) : (
         <div className='mb-10 bg-light-info p-8 rounded'>
           <div className='text-info'>
-            Use account <strong>admin@demo.com</strong> and password <strong>demo</strong> to
+            Use account <strong>user_1</strong> and password <strong>demo</strong> to
             continue.
           </div>
         </div>
@@ -89,9 +89,9 @@ export function Login() {
 
       {/* begin::Form group */}
       <div className='fv-row mb-10'>
-        <label className='form-label fs-6 fw-bolder text-dark'>Email</label>
+        <label className='form-label fs-6 fw-bolder text-dark'>User Name</label>
         <input
-          placeholder='Email'
+          placeholder='User Name'
           {...formik.getFieldProps('email')}
           className={clsx(
             'form-control form-control-lg form-control-solid',
@@ -100,7 +100,7 @@ export function Login() {
               'is-valid': formik.touched.email && !formik.errors.email,
             }
           )}
-          type='email'
+          type='text'
           name='email'
           autoComplete='off'
         />

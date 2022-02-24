@@ -7,6 +7,7 @@ import {UserSocialNetworksModel} from './UserSocialNetworksModel'
 export interface UserModel {
   id: number
   username: string
+  user_name:string
   password: string | undefined
   email: string
   first_name: string

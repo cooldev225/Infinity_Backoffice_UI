@@ -1,28 +1,20 @@
 import axios from 'axios'
 import {AuthModel} from '../models/AuthModel'
 import {UserModel} from '../models/UserModel'
-import Cookies from "universal-cookie";
 const API_URL = process.env.REACT_APP_API_URL
-const cookies = new Cookies();
-export const GET_USER_BY_ACCESSTOKEN_URL = `${API_URL}/verify_token`
-export const LOGIN_URL = `${API_URL}/login`
-export const REGISTER_URL = `${API_URL}/register`
-export const REQUEST_PASSWORD_URL = `${API_URL}/forgot_password`
+export const GET_USER_BY_ACCESSTOKEN_URL = `${API_URL}/users/verify_token`
+export const LOGIN_URL = `${API_URL}/users/login`
+export const REGISTER_URL = `${API_URL}/users/register`
+export const REQUEST_PASSWORD_URL = `${API_URL}/users/forgot_password`
 
 // Server should return AuthModel
 export function login(email: string, password: string) {
-  return axios.post(LOGIN_URL, {
-      email: email,
-      password: password,
-  })
-  /*
   return axios.get(LOGIN_URL, {
     params: {
       email: email,
       password: password,
     },
   })
-  */
 }
 
 // Server should return AuthModel
@@ -47,8 +39,9 @@ export function requestPassword(email: string) {
 export function getUserByToken() {
   // Authorization head should be fulfilled in interceptor.
   // Check common redux folder => setupAxios
+  /*
   return axios.post(LOGIN_URL, {
     api_token: cookies.get("cookieString"),
-  })
-  //return axios.get<UserModel>(GET_USER_BY_ACCESSTOKEN_URL)
+  })*/
+  return axios.get<UserModel>(GET_USER_BY_ACCESSTOKEN_URL)
 }
